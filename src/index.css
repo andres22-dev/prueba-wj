@@ -22,10 +22,14 @@
 
 .header__random{
 
-  width: 300px;
+  width: 400px;
   display:flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.random__container img{
+  width: 200px;
 }
 .header__title{
   color: #FFF;
