@@ -10,11 +10,23 @@ const maximun = 1;
 const minimun = 300;
 const random = () => Math.floor(Math.random()*(maximun - minimun)+ minimun);
 
-  const [paisRandom, setPaisRandom] = useState('');
+  const [paisRandom, setPaisRandom] = useState('57');
+  const [flag, setFlag] = useState('')
 
-  const getRandomPais = () => {
+  const getRandomPais = async () => {
 
+    try {
+      const paisCode = await axios.get(`https://restcountries.eu/rest/v2/callingcode/${paisRandom}`);
+      console.log(paisCode.data.[0].flag);
+    }catch{
+      console.log('error');
+    }
+    
+  }
 
+  const handleClick = () => {
+    setPaisRandom(random().toString())
+    getRandomPais()
   }
   return (
     <>
@@ -22,7 +34,7 @@ const random = () => Math.floor(Math.random()*(maximun - minimun)+ minimun);
         <header className="layoutcontainer__header">
           <h1 className="header__title">Whale Jaguar</h1>
           <div className="header__random">
-            <Button variant="contained">Pais Aleatorio</Button>
+            <Button variant="contained" onClick={handleClick}>Pais Aleatorio</Button>
             <div><img /><p>img</p></div>
           </div>
         </header>
