@@ -1,7 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react';
 import { Button } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
+import axios from 'axios';
+
+
 const MainPage = () => {
+
+const maximun = 1;
+const minimun = 300;
+const random = () => Math.floor(Math.random()*(maximun - minimun)+ minimun);
+
+  const [paisRandom, setPaisRandom] = useState('');
+
+  const getRandomPais = () => {
+
+
+  }
   return (
     <>
       <div className="layoutcontainer">
@@ -16,7 +30,8 @@ const MainPage = () => {
         <section className="layoutcontainer__main">
           <div className="main__search">
             <h2>Buscar Por Nombre de pais</h2>
-            <TextField id="standard-basic" label="Standard" />
+            <TextField id="filled-basic" label="Filled" variant="filled" />
+
           </div>
           <div className="main__data">
             <h2> Representando datos de forma simple</h2>

@@ -35,7 +35,7 @@
 .layoutcontainer__main{
 
   display: grid;
-  grid-template:  300px 300px / 1fr ;
+  grid-template:  400px 500px / 1fr ;
   grid-column: 1;
   grid-row: 2;
   background-color: #262930;
@@ -43,13 +43,30 @@
 
 
 .main__search{
-
+  padding: 20px;
   grid-column: 1;
   grid-row: 1/2;
+}
+
+.main__search h2{
+  color: #FFF;
+  font-weight: 700;
+  font-size: 42px;
+}
+
+.main__search input{
+  width: 1000px;
+  background: #FFF;
+
 }
 
 .main__data{
 
   grid-column: 1;
   grid-row: 2/3;
+  padding: 20px;
+}
+
+.main__data{
+  color: #FFF;
 }
