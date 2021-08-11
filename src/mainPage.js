@@ -9,9 +9,12 @@ import Card from '@material-ui/core/Card';
 
 const MainPage = () => {
 
+const urlBase = `https://restcountries.eu/rest/v2/`;
 const maximun = 1;
 const minimun = 372;
+const minimunTwo = 250;
 const random = () => Math.floor(Math.random()*(maximun - minimun)+ minimun);
+const randomTwo = () => Math.floor(Math.random()*(maximun - minimunTwo)+ minimunTwo);
 
   const [paisRandom, setPaisRandom] = useState('57');
   const [flagC, setFlagC] = useState('https://restcountries.eu/data/col.svg');
@@ -20,7 +23,7 @@ const random = () => Math.floor(Math.random()*(maximun - minimun)+ minimun);
   const getRandomPais = async () => {
 
     try {
-      const petitionByCode = await axios.get(`https://restcountries.eu/rest/v2/callingcode/${paisRandom}`);
+      const petitionByCode = await axios.get(`${urlBase}callingcode/${paisRandom}`);
       setFlagC(petitionByCode.data.[0].flag);
     }catch{
       setFlagC('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Uno_unpalogo.svg/1200px-Uno_unpalogo.svg.png');
@@ -32,7 +35,7 @@ const random = () => Math.floor(Math.random()*(maximun - minimun)+ minimun);
 
     try{
 
-      const response = await axios.get(`https://restcountries.eu/rest/v2/name/${inputValue}?fullText=true`);
+      const response = await axios.get(`${urlBase}name/${inputValue}?fullText=true`);
       const {name, flag, capital, region} = await response.data.[0];
       setDataCountry([name, flag, capital, region]);
 
@@ -40,10 +43,19 @@ const random = () => Math.floor(Math.random()*(maximun - minimun)+ minimun);
       alert(`No se ha encontrado ningun resultado de ${inputValue}, por favor vuelva a intentarlo !`);
     }
   }
+
+  const getEasyData = () => {
+    const countries = [];
+    const peticion = axios.get(`${urlBase}all`)
+          peticion
+            .then(( response ) => { console.log(response)})
+            .catch((error) => { console.log(error)})
+
+  }
   const handleClickRandom = () => {
     setPaisRandom(random().toString())
     getRandomPais();
-    getDataPais();
+    getEasyData();
   }
 
   const handleInputChange = (e) => {
