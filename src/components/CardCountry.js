@@ -1,26 +1,14 @@
-import React, {useState} from 'react'
-import axios from 'axios';
+import React from 'react';
+import Card from '@material-ui/core/Card';
 
-export const CardCountry = ({ nombre = 'Colombia' }) => {
-
-  const [dataC, setDataC] = useState([]);
-  const getDataPais = async () => {
-      try {
-        const country = await axios.get(`https://restcountries.eu/rest/v2/name/aruba?fullText=true`);
-
-
-        
-      }catch{
-        console.log('error');
-      }
-  
-  }
+export const CardCountry = ({domain, population, demonym, subregion}) => {
   return (
-    <div className="">
-      <h2></h2>
-      <img src="" />
-
-    </div>
+    <Card>
+      <h2>{domain}</h2>
+      <p>{population}</p>
+      <p>{demonym}</p>
+      <p>{subregion}</p>
+    </Card>
   )
 }
 

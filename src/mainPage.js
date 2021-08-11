@@ -20,6 +20,8 @@ const randomTwo = () => Math.floor(Math.random()*(maximun - minimunTwo)+ minimun
   const [flagC, setFlagC] = useState('https://restcountries.eu/data/col.svg');
   const [inputValue, setinputValue] = useState('Colombia');
   const [dataCountry, setDataCountry] = useState(['nombrePais', flagC, 'capital', 'region']);
+  const [item, setItem] = useState([]);
+  
   const getRandomPais = async () => {
 
     try {
@@ -48,9 +50,9 @@ const randomTwo = () => Math.floor(Math.random()*(maximun - minimunTwo)+ minimun
     const countries = [];
     const peticion = axios.get(`${urlBase}all`)
           peticion
-            .then(( response ) => { console.log(response)})
+            .then(( response ) => { countries.push(response.data[randomTwo()], response.data[randomTwo()], response.data[randomTwo()], response.data[randomTwo()], response.data[randomTwo()])})
             .catch((error) => { console.log(error)})
-
+    setItem(countries);
   }
   const handleClickRandom = () => {
     setPaisRandom(random().toString())
@@ -102,6 +104,13 @@ const randomTwo = () => Math.floor(Math.random()*(maximun - minimunTwo)+ minimun
           </div>
           <div className="main__data">
             <h2> Representando datos de forma simple</h2>
+            <ul>
+              {
+                item.map((count) => { 
+                  return (<li key={count}>{count}</li>)
+                })
+              }
+            </ul>
           </div>
         </section>
         
