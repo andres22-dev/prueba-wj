@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import { Button } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
 import axios from 'axios';
+import Card from '@material-ui/core/Card';
+
 
 
 const MainPage = () => {
@@ -13,22 +15,35 @@ const random = () => Math.floor(Math.random()*(maximun - minimun)+ minimun);
   const [paisRandom, setPaisRandom] = useState('57');
   const [flag, setFlag] = useState('https://restcountries.eu/data/col.svg');
   const [inputValue, setinputValue] = useState('Colombia');
-
-
+  const [dataCountry, setDataCountry] = useState(['nombrePais', flag, 'capital', 'region']);
   const getRandomPais = async () => {
 
     try {
-      const paisCode = await axios.get(`https://restcountries.eu/rest/v2/callingcode/${paisRandom}`);
-      setFlag(paisCode.data.[0].flag);
+      const petitionByCode = await axios.get(`https://restcountries.eu/rest/v2/callingcode/${paisRandom}`);
+      setFlag(petitionByCode.data.[0].flag);
     }catch{
       setFlag('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Uno_unpalogo.svg/1200px-Uno_unpalogo.svg.png');
     }
     
   }
 
+  const getDataPais = async () => {
+
+    try{
+
+      const response = await axios.get(`https://restcountries.eu/rest/v2/name/${inputValue}?fullText=true`);
+      const {name} = await response.data.[0];
+      console.log(name);
+
+    }catch{
+
+      console.log('error')
+    }
+  }
   const handleClickRandom = () => {
     setPaisRandom(random().toString())
-    getRandomPais()
+    getRandomPais();
+    getDataPais();
   }
 
   const handleInputChange = (e) => {
@@ -36,7 +51,8 @@ const random = () => Math.floor(Math.random()*(maximun - minimun)+ minimun);
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submit realizadp');
+    getDataPais();
+    
 
   }
   return (
@@ -46,14 +62,14 @@ const random = () => Math.floor(Math.random()*(maximun - minimun)+ minimun);
           <h1 className="header__title">Whale Jaguar</h1>
           <div className="header__random">
             <Button variant="contained" onClick={handleClickRandom}>Pais Aleatorio</Button>
-            <div class="random__container"><img src={flag}/></div>
+            <div className="random__container"><img src={flag}/></div>
           </div>
         </header>
 
         <section className="layoutcontainer__main">
           <div className="main__search">
             <h2>Buscar Por Nombre de pais</h2>
-            <form>
+            <form  onSubmit={ handleSubmit }>
               <TextField 
                 id="filled-basic" 
                 label="Filled" 
@@ -62,9 +78,14 @@ const random = () => Math.floor(Math.random()*(maximun - minimun)+ minimun);
                 value={ inputValue }
                 onChange={handleInputChange}
               />
-              
-            </form>
 
+              <Card className="search__card">
+                <h2>{dataCountry[0]}</h2>
+                <img src={dataCountry[1]} />
+                <p>{dataCountry[2]}</p>
+                <p>{dataCountry[3]}</p>
+              </Card>
+            </form>
           </div>
           <div className="main__data">
             <h2> Representando datos de forma simple</h2>

@@ -1,9 +1,25 @@
-import React from 'react'
+import React, {useState} from 'react'
+import axios from 'axios';
 
-export const CardCountry = () => {
+export const CardCountry = ({ nombre = 'Colombia' }) => {
+
+  const [dataC, setDataC] = useState([]);
+  const getDataPais = async () => {
+      try {
+        const country = await axios.get(`https://restcountries.eu/rest/v2/name/aruba?fullText=true`);
+
+
+        
+      }catch{
+        console.log('error');
+      }
+  
+  }
   return (
-    <div>
-      
+    <div className="">
+      <h2></h2>
+      <img src="" />
+
     </div>
   )
 }

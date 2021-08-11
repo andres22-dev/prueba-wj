@@ -52,6 +52,13 @@
   grid-row: 1/2;
 }
 
+.search__card{
+  width: 300px;
+}
+
+.search__card img{
+  width: 150px;
+}
 .main__search h2{
   color: #FFF;
   font-weight: 700;
