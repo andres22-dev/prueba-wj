@@ -1,6 +1,7 @@
 *{
   box-sizing: border-box;
   margin: 0;
+  font-family: arial;
 }
 
 .layoutcontainer {
@@ -39,7 +40,7 @@
 .layoutcontainer__main{
 
   display: grid;
-  grid-template:  400px 500px / 1fr ;
+  grid-template:  500px 500px / 1fr ;
   grid-column: 1;
   grid-row: 2;
   background-color: #262930;
@@ -52,15 +53,35 @@
   grid-row: 1/2;
 }
 
+.main__container{
+  display:flex;
+  justify-content: center;
+  padding: 20px;
+}
+
 .search__card{
   width: 300px;
+  height: 300px;
 }
 
 .search__card img{
   width: 150px;
 }
+
+.search__card{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
 .main__search h2{
   color: #FFF;
+  font-weight: 700;
+  font-size: 42px;
+}
+
+.search__card--h3{
+  color: #000;
   font-weight: 700;
   font-size: 42px;
 }

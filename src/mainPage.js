@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card';
 
 
 
+
 const MainPage = () => {
 
 const maximun = 1;
@@ -36,8 +37,7 @@ const random = () => Math.floor(Math.random()*(maximun - minimun)+ minimun);
       setDataCountry([name, flag, capital, region]);
 
     }catch{
-
-      console.log('error')
+      alert(`No se ha encontrado ningun resultado de ${inputValue}, por favor vuelva a intentarlo !`);
     }
   }
   const handleClickRandom = () => {
@@ -78,13 +78,14 @@ const random = () => Math.floor(Math.random()*(maximun - minimun)+ minimun);
                 value={ inputValue }
                 onChange={handleInputChange}
               />
-
-              <Card className="search__card">
-                <h2>{dataCountry[0]}</h2>
-                <img src={dataCountry[1]} />
-                <p>{dataCountry[2]}</p>
-                <p>{dataCountry[3]}</p>
-              </Card>
+              <div className="main__container">
+                <Card className="search__card">
+                  <h3 className="search__card--h3">{dataCountry[0]}</h3>
+                  <img src={dataCountry[1]} />
+                  <p>{dataCountry[2]}</p>
+                  <p>{dataCountry[3]}</p>
+                </Card>
+              </div>
             </form>
           </div>
           <div className="main__data">
