@@ -13,16 +13,16 @@ const minimun = 372;
 const random = () => Math.floor(Math.random()*(maximun - minimun)+ minimun);
 
   const [paisRandom, setPaisRandom] = useState('57');
-  const [flag, setFlag] = useState('https://restcountries.eu/data/col.svg');
+  const [flagC, setFlagC] = useState('https://restcountries.eu/data/col.svg');
   const [inputValue, setinputValue] = useState('Colombia');
-  const [dataCountry, setDataCountry] = useState(['nombrePais', flag, 'capital', 'region']);
+  const [dataCountry, setDataCountry] = useState(['nombrePais', flagC, 'capital', 'region']);
   const getRandomPais = async () => {
 
     try {
       const petitionByCode = await axios.get(`https://restcountries.eu/rest/v2/callingcode/${paisRandom}`);
-      setFlag(petitionByCode.data.[0].flag);
+      setFlagC(petitionByCode.data.[0].flag);
     }catch{
-      setFlag('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Uno_unpalogo.svg/1200px-Uno_unpalogo.svg.png');
+      setFlagC('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Uno_unpalogo.svg/1200px-Uno_unpalogo.svg.png');
     }
     
   }
@@ -32,8 +32,8 @@ const random = () => Math.floor(Math.random()*(maximun - minimun)+ minimun);
     try{
 
       const response = await axios.get(`https://restcountries.eu/rest/v2/name/${inputValue}?fullText=true`);
-      const {name} = await response.data.[0];
-      console.log(name);
+      const {name, flag, capital, region} = await response.data.[0];
+      setDataCountry([name, flag, capital, region]);
 
     }catch{
 
@@ -62,7 +62,7 @@ const random = () => Math.floor(Math.random()*(maximun - minimun)+ minimun);
           <h1 className="header__title">Whale Jaguar</h1>
           <div className="header__random">
             <Button variant="contained" onClick={handleClickRandom}>Pais Aleatorio</Button>
-            <div className="random__container"><img src={flag}/></div>
+            <div className="random__container"><img src={flagC}/></div>
           </div>
         </header>
 
