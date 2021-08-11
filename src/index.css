@@ -102,3 +102,30 @@
 .main__data{
   color: #FFF;
 }
+
+.layoutcontainer__footer{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #C94439;
+  justify-content:center;
+  height: 100px;
+}
+
+.footer--a a{
+  color: #FFF;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.footer__github{
+  color: #FFF;
+}
+
+.footer__twitter{
+  color: #FFF;
+}
+.footer--a a:hover{
+  color: #000;
+  text-decoration: block;
+}

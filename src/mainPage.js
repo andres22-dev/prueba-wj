@@ -4,6 +4,8 @@ import { TextField } from '@material-ui/core';
 import axios from 'axios';
 import Card from '@material-ui/core/Card';
 import CardCountry from './components/CardCountry';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import TwitterIcon from '@material-ui/icons/Twitter';
 
 
 
@@ -47,13 +49,6 @@ const randomTwo = () => Math.floor(Math.random()*(maximun - minimunTwo)+ minimun
   }
 
   const getEasyData = async () => {
-   /* const countries = [];
-    const peticion = axios.get(`${urlBase}all`)
-          peticion
-            .then(( response ) => { countries.push(response.data[randomTwo()], response.data[randomTwo()], response.data[randomTwo()], response.data[randomTwo()], response.data[randomTwo()])})
-            .catch((error) => { console.log(error)})
-    setItem(countries);
-    console.log(item[0]);*/
 
     const moreData = await axios.get(`${urlBase}all`);
       const {alpha3Code, subregion, population, demonym} = await moreData.data.[randomTwo()];
@@ -121,8 +116,9 @@ const randomTwo = () => Math.floor(Math.random()*(maximun - minimunTwo)+ minimun
           </div>
         </section>
         
-        <footer>
-          <p>@andres22_dev</p>
+        <footer className="layoutcontainer__footer">
+          <div className="footer__github footer--a"><GitHubIcon /><a href="https://github.com/andres22-dev/prueba-wj">andres22-dev</a></div>
+          <div className="footer__twitter footer--a"><TwitterIcon /><a href="https://twitter.com/andres22_dev">@andres22_dev</a></div>
         </footer>
       </div>
     </>
