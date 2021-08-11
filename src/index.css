@@ -40,7 +40,7 @@
 .layoutcontainer__main{
 
   display: grid;
-  grid-template:  500px 500px / 1fr ;
+  grid-template:  500px 300px / 1fr ;
   grid-column: 1;
   grid-row: 2;
   background-color: #262930;

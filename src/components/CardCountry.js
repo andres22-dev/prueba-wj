@@ -1,13 +1,13 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 
-export const CardCountry = ({domain, population, demonym, subregion}) => {
+export const CardCountry = ({alpha3Code, subregion, population, demonym}) => {
   return (
     <Card>
-      <h2>{domain}</h2>
+      <h2>{alpha3Code}</h2>
+      <p>{subregion}</p>
       <p>{population}</p>
       <p>{demonym}</p>
-      <p>{subregion}</p>
     </Card>
   )
 }

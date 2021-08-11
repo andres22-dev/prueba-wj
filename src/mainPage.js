@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
 import axios from 'axios';
 import Card from '@material-ui/core/Card';
-
+import CardCountry from './components/CardCountry';
 
 
 
@@ -46,14 +46,21 @@ const randomTwo = () => Math.floor(Math.random()*(maximun - minimunTwo)+ minimun
     }
   }
 
-  const getEasyData = () => {
-    const countries = [];
+  const getEasyData = async () => {
+   /* const countries = [];
     const peticion = axios.get(`${urlBase}all`)
           peticion
             .then(( response ) => { countries.push(response.data[randomTwo()], response.data[randomTwo()], response.data[randomTwo()], response.data[randomTwo()], response.data[randomTwo()])})
             .catch((error) => { console.log(error)})
     setItem(countries);
+    console.log(item[0]);*/
+
+    const moreData = await axios.get(`${urlBase}all`);
+      const {alpha3Code, subregion, population, demonym} = await moreData.data.[randomTwo()];
+      setItem([alpha3Code, subregion, population, demonym]);
+
   }
+  
   const handleClickRandom = () => {
     setPaisRandom(random().toString())
     getRandomPais();
@@ -103,14 +110,14 @@ const randomTwo = () => Math.floor(Math.random()*(maximun - minimunTwo)+ minimun
             </form>
           </div>
           <div className="main__data">
-            <h2> Representando datos de forma simple</h2>
-            <ul>
-              {
-                item.map((count) => { 
-                  return (<li key={count}>{count}</li>)
-                })
-              }
-            </ul>
+            <h2> Representando datos de forma simple, Datos Tomados de un pais aleatoriamente</h2>
+            <CardCountry 
+              alpha3Code={item[0]} 
+              subregion={item[1]}
+              population={item[2]}
+              demonym={item[3]}
+            />
+            
           </div>
         </section>
         
